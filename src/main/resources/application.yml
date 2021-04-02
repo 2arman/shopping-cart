@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  undertow:
+    threads:
+      io: ${SERVER_UNDERTOW_THREADS_IO:400}
+      worker: ${SERVER_UNDERTOW_THREADS_WORKER:4000}
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  application:
+    name: shopping-cart
+

@@ -1,5 +1,6 @@
 package com.example.shoppingcart.domain;
 
+import com.example.shoppingcart.domain.base.BaseEntity;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -12,7 +13,7 @@ import javax.validation.constraints.Positive;
  * Time: 1:11 AM
  **/
 @Data
-public class Item {
+public class Item implements BaseEntity {
     @NotNull
     private Long Id;
     @NotEmpty

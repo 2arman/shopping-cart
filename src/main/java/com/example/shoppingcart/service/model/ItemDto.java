@@ -12,6 +12,7 @@ import javax.validation.constraints.Positive;
  **/
 @Data
 public class ItemDto {
+    private Long Id;
     @NotEmpty
     private String name;
     @Positive

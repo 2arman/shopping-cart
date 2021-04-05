@@ -80,6 +80,12 @@ public class ItemSteps extends AbstractSteps implements En {
                     .all();
         });
 
+        And("^save item response into payload$",() -> {
+            final Response response = testContext().getResponse();
+            final var itemsList = response.as(ItemDto[].class);
+            testContext().setPayload(itemsList);
+        });
+
         And("^BO user retrieves items with the following attributes$", (DataTable expectedDt) -> {
             final Response response = testContext().getResponse();
             final var itemsList = response.as(ItemDto[].class);

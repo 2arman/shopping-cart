@@ -1,6 +1,7 @@
 package com.example.shoppingcart.repository.base;
 
 import com.example.shoppingcart.domain.Item;
+import com.example.shoppingcart.domain.base.BaseEntity;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,12 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * Date: 4/3/21
  * Time: 1:19 PM
  **/
-public abstract class SimpleRepositoryBase<T> implements SimpleRepository<T> {
+public abstract class SimpleRepositoryBase<T extends BaseEntity> implements SimpleRepository<T> {
     private Set<T> entities = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     @Override
     public <S extends T> S add(S entity) {
         checkNotNull(entity);
+        entity.setId(getSequenceGenerator().getNext());
         entities.add(entity);
         return entity;
     }
@@ -23,6 +25,7 @@ public abstract class SimpleRepositoryBase<T> implements SimpleRepository<T> {
     @Override
     public <S extends T> Collection<S> saveAll(Collection<S> entities) {
         checkNotNull(entities);
+        entities.forEach(s ->s.setId(getSequenceGenerator().getNext()));
         this.entities.addAll(entities);
         return entities;
     }
@@ -30,6 +33,11 @@ public abstract class SimpleRepositoryBase<T> implements SimpleRepository<T> {
     @Override
     public Collection<T> findAll() {
         return new ArrayList<>(entities);
+    }
+
+    @Override
+    public Optional<T> findById(long id) {
+        return entities.stream().filter(t -> t.getId().equals(id)).findFirst();
     }
 
     @Override

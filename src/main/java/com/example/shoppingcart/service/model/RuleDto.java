@@ -16,7 +16,7 @@ public class RuleDto {
 
     private long ruleId;
     @NotNull
-    private Item item;
+    private ItemDto item;
     @Positive
     private int quantity;
     @Positive

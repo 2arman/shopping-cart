@@ -1,10 +1,8 @@
 package com.example.shoppingcart;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
@@ -19,13 +17,13 @@ public class ShoppingCartApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext =
                 SpringApplication.run(ShoppingCartApplication.class, args);
-      logApplicationStartup(applicationContext);
+        logApplicationStartup(applicationContext);
     }
 
-    private static void logApplicationStartup( ConfigurableApplicationContext context) {
-		Environment env = context.getEnvironment();
-		String protocol = "http";
-		if (env.getProperty("server.ssl.key-store") != null) {
+    private static void logApplicationStartup(ConfigurableApplicationContext context) {
+        Environment env = context.getEnvironment();
+        String protocol = "http";
+        if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";
         }
         String serverPort = env.getProperty("server.port");

@@ -2,6 +2,7 @@ package com.example.shoppingcart.service.impl;
 
 import com.example.shoppingcart.repository.ItemRepository;
 import com.example.shoppingcart.service.ItemService;
+import com.example.shoppingcart.service.exception.ItemNotFoundException;
 import com.example.shoppingcart.service.mapper.ItemMapper;
 import com.example.shoppingcart.service.model.ItemDto;
 import lombok.RequiredArgsConstructor;

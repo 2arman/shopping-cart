@@ -19,7 +19,7 @@ public class ItemSteps extends AbstractSteps implements En {
     public ItemSteps() {
         Given("BO user wants to create items with the following attributes", (DataTable employeeDt) -> {
             List<ItemDto> items = employeeDt.asList(ItemDto.class);
-            testContext().setPayload(items);
+            getTextContext().setPayload(items);
         });
 
 
@@ -30,11 +30,11 @@ public class ItemSteps extends AbstractSteps implements En {
                             .all()
                             .when()
                             .contentType(ContentType.JSON)
-                            .body(testContext().getPayload())
+                            .body(getTextContext().getPayload())
                             .post(itemsUrl)
                             .andReturn();
 
-            testContext().setResponse(response);
+            getTextContext().setResponse(response);
 
             response.then()
                     .log()
@@ -53,7 +53,7 @@ public class ItemSteps extends AbstractSteps implements En {
                             .get(itemsUrl)
                             .andReturn();
 
-            testContext().setResponse(response);
+            getTextContext().setResponse(response);
 
             response.then()
                     .log()
@@ -69,28 +69,34 @@ public class ItemSteps extends AbstractSteps implements En {
                             .all()
                             .when()
                             .contentType(ContentType.JSON)
-                            .body(testContext().getPayload())
+                            .body(getTextContext().getPayload())
                             .delete(itemsUrl)
                             .andReturn();
 
-            testContext().setResponse(response);
+            getTextContext().setResponse(response);
 
             response.then()
                     .log()
                     .all();
         });
 
-        And("^save item response into payload$",() -> {
-            final Response response = testContext().getResponse();
+        And("^save item response into payload$", () -> {
+            final Response response = getTextContext().getResponse();
             final var itemsList = response.as(ItemDto[].class);
-            testContext().setPayload(itemsList);
+            getTextContext().setPayload(itemsList);
         });
 
         And("^BO user retrieves items with the following attributes$", (DataTable expectedDt) -> {
-            final Response response = testContext().getResponse();
+            final Response response = getTextContext().getResponse();
             final var itemsList = response.as(ItemDto[].class);
             final var actualDataTable = DataTableMapper.toItemDataTable(Arrays.asList(itemsList));
             expectedDt.unorderedDiff(actualDataTable);
+        });
+
+        And("^save item response into context with key \"([^\"]*)\"$", (String contextKey) -> {
+            final Response response = getTextContext().getResponse();
+            final var itemsList = response.as(ItemDto[].class);
+            getTextContext().set(contextKey, Arrays.asList(itemsList));
         });
     }
 

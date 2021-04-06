@@ -2,10 +2,7 @@ package com.example.shoppingcart.bdd.stepdefs;
 
 import com.example.shoppingcart.bdd.config.CucumberTestContext;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.stereotype.Component;
-
-import static com.example.shoppingcart.bdd.config.CucumberTestContext.CONTEXT;
 
 @Component
 public abstract class AbstractSteps {
@@ -17,7 +14,7 @@ public abstract class AbstractSteps {
     return "http://localhost:8080";
   }
 
-  public CucumberTestContext testContext() {
-    return CONTEXT;
+  public CucumberTestContext getTextContext() {
+    return CucumberTestContext.CONTEXT;
   }
 }

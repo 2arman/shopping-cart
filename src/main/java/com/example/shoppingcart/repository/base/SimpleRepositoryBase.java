@@ -14,6 +14,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public abstract class SimpleRepositoryBase<T extends BaseEntity> implements SimpleRepository<T> {
     private Set<T> entities = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
+    protected Set<T> getEntities() {
+        return entities;
+    }
+
     @Override
     public <S extends T> S add(S entity) {
         checkNotNull(entity);

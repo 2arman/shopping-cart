@@ -1,7 +1,7 @@
-package com.example.shoppingcart.service.model;
+package com.example.shoppingcart.domain;
 
-import com.example.shoppingcart.domain.Item;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -11,12 +11,11 @@ import javax.validation.constraints.Positive;
  * Date: 4/3/21
  * Time: 11:39 AM
  **/
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class RuleDto {
+public class QuantityRule extends Rule {
     @Positive
-    @NotNull
-    private Integer quantity;
+    private int quantity;
     @Positive
-    @NotNull
-    private Double price;
+    private double price;
 }

@@ -13,16 +13,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SpringIntegrationTest {
 
 
-  @Before
-  public void setUp() {
-    log.info("------------- TEST CONTEXT SETUP -------------");
-  }
+    @Before
+    public void setUp() {
+        log.info("------------- TEST CONTEXT SETUP -------------");
+    }
 
-  @After
-  public void tearDown() {
-    log.info("------------- TEST CONTEXT TEAR DOWN -------------");
-    CucumberTestContext.CONTEXT.reset();
-  }
+    @After
+    public void tearDown() {
+        log.info("------------- TEST CONTEXT TEAR DOWN -------------");
+        CucumberTestContext.CONTEXT.reset();
+    }
 
 }
 

@@ -7,5 +7,6 @@ package com.example.shoppingcart.domain.base;
  **/
 public interface BaseEntity {
     Long getId();
+
     void setId(Long id);
 }

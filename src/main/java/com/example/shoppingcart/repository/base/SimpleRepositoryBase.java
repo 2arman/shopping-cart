@@ -1,6 +1,5 @@
 package com.example.shoppingcart.repository.base;
 
-import com.example.shoppingcart.domain.Item;
 import com.example.shoppingcart.domain.base.BaseEntity;
 
 import java.util.*;
@@ -29,7 +28,7 @@ public abstract class SimpleRepositoryBase<T extends BaseEntity> implements Simp
     @Override
     public <S extends T> Collection<S> saveAll(Collection<S> entities) {
         checkNotNull(entities);
-        entities.forEach(s ->s.setId(getSequenceGenerator().getNext()));
+        entities.forEach(s -> s.setId(getSequenceGenerator().getNext()));
         this.entities.addAll(entities);
         return entities;
     }

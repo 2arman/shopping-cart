@@ -1,5 +1,6 @@
 package com.example.shoppingcart.bdd.stepdefs;
 
+import com.example.shoppingcart.bdd.stepdefs.helper.ItemHelper;
 import com.example.shoppingcart.service.model.ItemDto;
 import com.example.shoppingcart.service.model.RuleDto;
 import io.cucumber.datatable.DataTable;
@@ -14,7 +15,7 @@ import static io.restassured.RestAssured.given;
 
 public class RuleSteps extends AbstractSteps implements En {
 
-    private final String itemsUrl = baseUrl() + "/api/v1/bo/items/{id}/rules";
+    private final String rulesUrl = baseUrl() + "/api/v1/bo/items/{id}/rules";
 
     public RuleSteps() {
         Given("BO user wants to create rules with the following attributes", (DataTable rulesDt) -> {
@@ -25,7 +26,7 @@ public class RuleSteps extends AbstractSteps implements En {
 
         When("^the BO user saves new rule of item (\\d+) of context \"([^\"]*)\"$", (Long itemOrder, String contextKey) -> {
 
-            Long itemId = getItemFromContext(itemOrder, contextKey);
+            Long itemId = ItemHelper.getItemFromContext(itemOrder, contextKey);
 
             final Response response =
                     given()
@@ -34,7 +35,7 @@ public class RuleSteps extends AbstractSteps implements En {
                             .when()
                             .contentType(ContentType.JSON)
                             .body(getTextContext().getPayload())
-                            .post(itemsUrl.replace("{id}", itemId.toString()))
+                            .post(rulesUrl.replace("{id}", itemId.toString()))
                             .andReturn();
 
             getTextContext().setResponse(response);
@@ -47,14 +48,14 @@ public class RuleSteps extends AbstractSteps implements En {
 
         When("^the BO user wants to get rules of item (\\d+) of context \"([^\"]*)\"$", (Long itemOrder, String contextKey) -> {
 
-            Long id = getItemFromContext(itemOrder, contextKey);
+            Long id = ItemHelper.getItemFromContext(itemOrder, contextKey);
             final Response response =
                     given()
                             .log()
                             .all()
                             .when()
                             .contentType(ContentType.JSON)
-                            .get(itemsUrl.replace("{id}", id.toString()))
+                            .get(rulesUrl.replace("{id}", id.toString()))
                             .andReturn();
 
             getTextContext().setResponse(response);
@@ -67,7 +68,7 @@ public class RuleSteps extends AbstractSteps implements En {
 
         When("^the BO user wants to delete all rules of item (\\d+) of context \"([^\"]*)\"$", (Long itemOrder, String contextKey) -> {
 
-            Long itemId = getItemFromContext(itemOrder, contextKey);
+            Long itemId = ItemHelper.getItemFromContext(itemOrder, contextKey);
 
             final Response response =
                     given()
@@ -75,7 +76,7 @@ public class RuleSteps extends AbstractSteps implements En {
                             .all()
                             .when()
                             .contentType(ContentType.JSON)
-                            .delete(itemsUrl.replace("{id}", itemId.toString()))
+                            .delete(rulesUrl.replace("{id}", itemId.toString()))
                             .andReturn();
 
             getTextContext().setResponse(response);
@@ -99,12 +100,4 @@ public class RuleSteps extends AbstractSteps implements En {
         });
     }
 
-    private Long getItemFromContext(Long itemId, String contextKey) {
-        Long id = -1L;
-        if (getTextContext().get(contextKey) instanceof List<?>) {
-            final Object item = ((List<?>) getTextContext().get(contextKey)).get(itemId.intValue() - 1);
-            id = ((ItemDto) item).getId();
-        }
-        return id;
-    }
 }

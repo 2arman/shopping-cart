@@ -1,0 +1,83 @@
+POST http://localhost:8080/api/v1/cart/items?itemId=6
+Content-Type: application/json
+
+###
+DELETE http://localhost:8080/api/v1/cart/items?itemId=6
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/v1/cart
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/v1/bo/items
+Content-Type: application/json
+
+###
+POST http://localhost:8080/api/v1/bo/items
+Content-Type: application/json
+
+[
+  {
+    "name": "A",
+    "unitPrice": "50.0"
+  },
+  {
+    "name": "B",
+    "unitPrice": "30.0"
+  },
+  {
+    "name": "C",
+    "unitPrice": "20.0"
+  },
+  {
+    "name": "D",
+    "unitPrice": "15.0"
+  }
+]
+
+###
+DELETE http://localhost:8080/api/v1/bo/items
+Content-Type: application/json
+
+[
+  {
+    "id": 5,
+    "name": "A",
+    "unitPrice": "80.0"
+  }
+]
+
+###
+POST http://localhost:8080/api/v1/bo/items/7/rules
+Content-Type: application/json
+
+[
+  {
+    "quantity": "2",
+    "price": "45.0"
+  }
+]
+
+###
+DELETE http://localhost:8080/api/v1/bo/items/6/rules
+Content-Type: application/json
+
+###
+POST http://localhost:8080/api/v1/bo/items/7/rules
+Content-Type: application/json
+
+[
+  {
+    "quantity": "2",
+    "price": "45.0"
+  }
+]
+
+###
+GET http://localhost:8080/api/v1/bo/items/6/rules
+Content-Type: application/json
+
+###
+
+

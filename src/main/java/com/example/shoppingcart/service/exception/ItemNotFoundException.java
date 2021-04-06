@@ -9,7 +9,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
  * Date: 4/5/21
  * Time: 12:19 AM
  **/
-@ResponseStatus(NOT_FOUND)
+@ResponseStatus(value = NOT_FOUND, reason = "Could not found this item")
 public class ItemNotFoundException extends RuntimeException {
     public ItemNotFoundException(String message) {
         super(message);

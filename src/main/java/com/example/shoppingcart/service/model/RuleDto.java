@@ -1,6 +1,5 @@
 package com.example.shoppingcart.service.model;
 
-import com.example.shoppingcart.domain.Item;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

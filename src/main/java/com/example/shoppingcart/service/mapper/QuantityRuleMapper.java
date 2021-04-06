@@ -1,9 +1,6 @@
 package com.example.shoppingcart.service.mapper;
 
-import com.example.shoppingcart.domain.Item;
 import com.example.shoppingcart.domain.QuantityRule;
-import com.example.shoppingcart.domain.Rule;
-import com.example.shoppingcart.service.model.ItemDto;
 import com.example.shoppingcart.service.model.RuleDto;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;

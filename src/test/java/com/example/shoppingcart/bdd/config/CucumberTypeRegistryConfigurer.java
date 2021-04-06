@@ -23,46 +23,47 @@ import static java.util.Locale.ENGLISH;
  * <b>NOTE:</b> This class assumes that you will use field names match the data table column headers.
  * </p>
  */
+@SuppressWarnings("deprecation")
 @Configurable
 //todo must find alternative updated way instead of using TypeRegistryConfigurer
 public class CucumberTypeRegistryConfigurer implements TypeRegistryConfigurer {
 
-  private ObjectMapper mapper;
+    private ObjectMapper mapper;
 
-  public CucumberTypeRegistryConfigurer() {
-    mapper = new ObjectMapper();
+    public CucumberTypeRegistryConfigurer() {
+        mapper = new ObjectMapper();
 
-    // To serialize and deserialize java.time.LocalDate, LocalDateTime etc.
-    mapper.registerModule(new JavaTimeModule());
-    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        // To serialize and deserialize java.time.LocalDate, LocalDateTime etc.
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL);
-  }
-
-  @Override
-  public Locale locale() {
-    return ENGLISH;
-  }
-
-  @Override
-  public void configureTypeRegistry(TypeRegistry typeRegistry) {
-    Transformer transformer = new Transformer();
-    typeRegistry.setDefaultDataTableCellTransformer(transformer);
-    typeRegistry.setDefaultDataTableEntryTransformer(transformer);
-    typeRegistry.setDefaultParameterTransformer(transformer);
-  }
-
-  private class Transformer implements ParameterByTypeTransformer, TableEntryByTypeTransformer, TableCellByTypeTransformer {
-
-    @Override
-    public Object transform(String s, Type type) {
-      return mapper.convertValue(s, mapper.constructType(type));
+        mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL);
     }
 
     @Override
-    public Object transform(Map<String, String> map, Type type, TableCellByTypeTransformer tableCellByTypeTransformer) {
-      return mapper.convertValue(map, mapper.constructType(type));
+    public Locale locale() {
+        return ENGLISH;
     }
-  }
+
+    @Override
+    public void configureTypeRegistry(TypeRegistry typeRegistry) {
+        Transformer transformer = new Transformer();
+        typeRegistry.setDefaultDataTableCellTransformer(transformer);
+        typeRegistry.setDefaultDataTableEntryTransformer(transformer);
+        typeRegistry.setDefaultParameterTransformer(transformer);
+    }
+
+    private class Transformer implements ParameterByTypeTransformer, TableEntryByTypeTransformer, TableCellByTypeTransformer {
+
+        @Override
+        public Object transform(String s, Type type) {
+            return mapper.convertValue(s, mapper.constructType(type));
+        }
+
+        @Override
+        public Object transform(Map<String, String> map, Type type, TableCellByTypeTransformer tableCellByTypeTransformer) {
+            return mapper.convertValue(map, mapper.constructType(type));
+        }
+    }
 
 }

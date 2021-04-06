@@ -25,14 +25,14 @@ public class RuleServiceImpl implements RuleService {
     @Override
     public List<RuleDto> getAll(Long itemId) {
         var item = getItemById(itemId);
-        return quantityRuleMapper.mapRules( item.getRules());
+        return quantityRuleMapper.mapRules(item.getRules());
     }
 
     @Override
     public List<RuleDto> addAll(Long itemId, List<RuleDto> rules) {
         var item = getItemById(itemId);
         item.getRules().addAll(quantityRuleMapper.mapRulesDto(rules));
-        return quantityRuleMapper.mapRules( item.getRules());
+        return quantityRuleMapper.mapRules(item.getRules());
     }
 
     @Override

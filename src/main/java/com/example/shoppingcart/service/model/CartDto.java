@@ -11,6 +11,7 @@ import java.util.List;
  **/
 @Data
 public class CartDto {
-    private List<ItemDto> items;
+    private Long Id;
+    private List<ItemQuantityDto> itemQuantity;
     private Double totalPrice;
 }

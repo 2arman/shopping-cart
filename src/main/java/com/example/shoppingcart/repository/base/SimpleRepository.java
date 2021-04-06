@@ -59,6 +59,4 @@ public interface SimpleRepository<T extends BaseEntity> {
     void delete(T entity);
 
 
-
-
 }

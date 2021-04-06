@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class AbstractSteps {
 
-  @Value("server.port")
-  private String port;
+    @Value("server.port")
+    private String port;
 
-  public String baseUrl() {
-    return "http://localhost:8080";
-  }
+    public String baseUrl() {
+        return "http://localhost:8080";
+    }
 
-  public CucumberTestContext getTextContext() {
-    return CucumberTestContext.CONTEXT;
-  }
+    public CucumberTestContext getTextContext() {
+        return CucumberTestContext.CONTEXT;
+    }
 }

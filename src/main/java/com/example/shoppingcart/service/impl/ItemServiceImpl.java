@@ -1,5 +1,6 @@
 package com.example.shoppingcart.service.impl;
 
+import com.example.shoppingcart.domain.Item;
 import com.example.shoppingcart.repository.ItemRepository;
 import com.example.shoppingcart.service.ItemService;
 import com.example.shoppingcart.service.exception.ItemNotFoundException;
@@ -19,23 +20,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
-    private final ItemMapper mapper;
+    private final ItemMapper itemMapper;
 
     @Override
     public List<ItemDto> getAllItems() {
-        return mapper.mapItems(itemRepository.findAll());
+        return itemMapper.mapItems(itemRepository.findAll());
     }
 
     @Override
     public List<ItemDto> addAll(List<ItemDto> items) {
-        return mapper.mapItems(
+        return itemMapper.mapItems(
                 itemRepository.saveAll(
-                        mapper.mapItemsDto(items)));
+                        itemMapper.mapItemsDto(items)));
     }
 
     @Override
     public void removeAll(List<ItemDto> items) {
         itemRepository.deleteAll(
-                mapper.mapItemsDto(items));
+                itemMapper.mapItemsDto(items));
+    }
+
+    @Override
+    public Item getItemById(Long id) {
+        return itemRepository
+                .findById(id)
+                .orElseThrow(() -> new ItemNotFoundException("Item not found"));
     }
 }

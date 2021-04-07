@@ -1,6 +1,6 @@
-package com.example.shoppingcart.bdd.stepdefs;
+package com.example.shoppingcart.integration.stepdefs;
 
-import com.example.shoppingcart.bdd.config.CucumberTestContext;
+import com.example.shoppingcart.integration.config.CucumberTestContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

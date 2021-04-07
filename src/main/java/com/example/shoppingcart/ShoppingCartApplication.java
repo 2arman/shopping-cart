@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example")
 @Slf4j
 public class ShoppingCartApplication {
 

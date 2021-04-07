@@ -1,6 +1,6 @@
-package com.example.shoppingcart.bdd;
+package com.example.shoppingcart.integration;
 
-import com.example.shoppingcart.bdd.config.SpringIntegrationTest;
+import com.example.shoppingcart.integration.config.SpringIntegrationTest;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         plugin = {"json:target/cucumber-report.json"},
         glue = {"com.example.shoppingcart.bdd.config",
                 "com.example.shoppingcart.bdd.stepdefs"})
-public class CucumberTest extends SpringIntegrationTest {
+public class ShoppingCartITest extends SpringIntegrationTest {
 }

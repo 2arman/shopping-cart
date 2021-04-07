@@ -1,4 +1,4 @@
-package com.example.shoppingcart.bdd.config;
+package com.example.shoppingcart.integration.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

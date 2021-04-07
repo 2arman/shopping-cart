@@ -1,4 +1,4 @@
-package com.example.shoppingcart.bdd.stepdefs;
+package com.example.shoppingcart.integration.stepdefs;
 
 import com.example.shoppingcart.service.model.CartDto;
 import io.cucumber.java8.En;
@@ -6,7 +6,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
-import static com.example.shoppingcart.bdd.stepdefs.helper.ItemHelper.getItemFromContext;
+import static com.example.shoppingcart.integration.stepdefs.helper.ItemHelper.getItemFromContext;
 import static io.restassured.RestAssured.given;
 
 /**

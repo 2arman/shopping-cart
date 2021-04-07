@@ -1,4 +1,4 @@
-package com.example.shoppingcart.bdd.stepdefs;
+package com.example.shoppingcart.integration.stepdefs;
 
 import io.cucumber.java8.En;
 import io.restassured.response.Response;

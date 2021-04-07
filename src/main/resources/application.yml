@@ -12,4 +12,8 @@ logging:
 spring:
   application:
     name: shopping-cart
+  profiles:
+    active: ${SPRING_ACTIVE_PROFILE:dev}
+    include:
+      - swagger
 

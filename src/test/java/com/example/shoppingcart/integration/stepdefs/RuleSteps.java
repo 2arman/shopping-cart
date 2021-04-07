@@ -1,6 +1,6 @@
-package com.example.shoppingcart.bdd.stepdefs;
+package com.example.shoppingcart.integration.stepdefs;
 
-import com.example.shoppingcart.bdd.stepdefs.helper.ItemHelper;
+import com.example.shoppingcart.integration.stepdefs.helper.ItemHelper;
 import com.example.shoppingcart.service.model.ItemDto;
 import com.example.shoppingcart.service.model.RuleDto;
 import io.cucumber.datatable.DataTable;

@@ -1,6 +1,6 @@
-package com.example.shoppingcart.bdd.stepdefs.helper;
+package com.example.shoppingcart.integration.stepdefs.helper;
 
-import com.example.shoppingcart.bdd.config.CucumberTestContext;
+import com.example.shoppingcart.integration.config.CucumberTestContext;
 import com.example.shoppingcart.service.model.ItemDto;
 
 import java.util.List;

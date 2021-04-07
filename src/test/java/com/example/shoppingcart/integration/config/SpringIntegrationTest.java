@@ -1,4 +1,4 @@
-package com.example.shoppingcart.bdd.config;
+package com.example.shoppingcart.integration.config;
 
 
 import io.cucumber.java.After;

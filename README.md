@@ -47,8 +47,10 @@ We don't implement database connection or using any ORM.
 We consider `Rule` as abstract domain that can extends by custom rules later.
 At first try we only implement `QuantityRule` for handling discount on quantity.
 
+Best price calculation implemented by a Dynamic Programming Solution. (`PriceService`) 
 ####Test
 For better sense use cucumber tools for implementing bdd and the Integration Tests.
+Unit test implemented for best price calculation test cases.
 
 ####Improvement issues
 

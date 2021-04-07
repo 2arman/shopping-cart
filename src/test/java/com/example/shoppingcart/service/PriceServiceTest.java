@@ -3,6 +3,7 @@ package com.example.shoppingcart.service;
 import com.example.shoppingcart.domain.Item;
 import com.example.shoppingcart.domain.QuantityRule;
 import com.example.shoppingcart.service.impl.PriceServiceImpl;
+import com.google.common.collect.ImmutableSet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -93,5 +94,85 @@ class PriceServiceTest {
         when(item.getName()).thenReturn("B");
         final var calculatePrice = priceService.calculatePrice(item, 6);
         Assertions.assertEquals(135.0, calculatePrice);
+    }
+
+    @Test
+    void calculatePrice_With6Item_QuantityRuleFor2And3_MustUse3QuantityRule2Times() {
+        Item item = mock(Item.class);
+
+        QuantityRule quantityRule2 = mock(QuantityRule.class);
+        when(quantityRule2.getPrice()).thenReturn(45.0);
+        when(quantityRule2.getQuantity()).thenReturn(2);
+
+        QuantityRule quantityRule3 = mock(QuantityRule.class);
+        when(quantityRule3.getPrice()).thenReturn(65.0);
+        when(quantityRule3.getQuantity()).thenReturn(3);
+        Set<QuantityRule> rules = ImmutableSet.of(quantityRule2, quantityRule3);
+
+        when(item.getRules()).thenReturn(rules);
+        when(item.getUnitPrice()).thenReturn(30.0);
+        when(item.getName()).thenReturn("B");
+        final var calculatePrice = priceService.calculatePrice(item, 6);
+        Assertions.assertEquals(130.0, calculatePrice);
+    }
+
+    @Test
+    void calculatePrice_With6Item_QuantityRuleFor2And3_MustUse2QuantityRule3Times() {
+        Item item = mock(Item.class);
+
+        QuantityRule quantityRule2 = mock(QuantityRule.class);
+        when(quantityRule2.getPrice()).thenReturn(45.0);
+        when(quantityRule2.getQuantity()).thenReturn(2);
+
+        QuantityRule quantityRule3 = mock(QuantityRule.class);
+        when(quantityRule3.getPrice()).thenReturn(70.0);
+        when(quantityRule3.getQuantity()).thenReturn(3);
+        Set<QuantityRule> rules = ImmutableSet.of(quantityRule2, quantityRule3);
+
+        when(item.getRules()).thenReturn(rules);
+        when(item.getUnitPrice()).thenReturn(30.0);
+        when(item.getName()).thenReturn("B");
+        final var calculatePrice = priceService.calculatePrice(item, 6);
+        Assertions.assertEquals(135.0, calculatePrice);
+    }
+
+    @Test
+    void calculatePrice_With6Item_SameValueQuantityRuleFor2And3_MustUseAnyRules() {
+        Item item = mock(Item.class);
+
+        QuantityRule quantityRule2 = mock(QuantityRule.class);
+        when(quantityRule2.getPrice()).thenReturn(50.0);
+        when(quantityRule2.getQuantity()).thenReturn(2);
+
+        QuantityRule quantityRule3 = mock(QuantityRule.class);
+        when(quantityRule3.getPrice()).thenReturn(75.0);
+        when(quantityRule3.getQuantity()).thenReturn(3);
+        Set<QuantityRule> rules = ImmutableSet.of(quantityRule2, quantityRule3);
+
+        when(item.getRules()).thenReturn(rules);
+        when(item.getUnitPrice()).thenReturn(30.0);
+        when(item.getName()).thenReturn("B");
+        final var calculatePrice = priceService.calculatePrice(item, 6);
+        Assertions.assertEquals(150.0, calculatePrice);
+    }
+
+    @Test
+    void calculatePrice_With10Item_ExpensiveQuantityRuleFor2And3_MustNotUseAnyRules() {
+        Item item = mock(Item.class);
+
+        QuantityRule quantityRule2 = mock(QuantityRule.class);
+        when(quantityRule2.getPrice()).thenReturn(75.0);
+        when(quantityRule2.getQuantity()).thenReturn(2);
+
+        QuantityRule quantityRule3 = mock(QuantityRule.class);
+        when(quantityRule3.getPrice()).thenReturn(95.0);
+        when(quantityRule3.getQuantity()).thenReturn(3);
+        Set<QuantityRule> rules = ImmutableSet.of(quantityRule2, quantityRule3);
+
+        when(item.getRules()).thenReturn(rules);
+        when(item.getUnitPrice()).thenReturn(30.0);
+        when(item.getName()).thenReturn("B");
+        final var calculatePrice = priceService.calculatePrice(item, 10);
+        Assertions.assertEquals(300.0, calculatePrice);
     }
 }

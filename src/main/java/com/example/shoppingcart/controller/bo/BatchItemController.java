@@ -35,7 +35,7 @@ public class BatchItemController {
     }
 
     @DeleteMapping()
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteItems(@Valid @RequestBody List<ItemDto> items) {
         itemService.removeAll(items);
     }

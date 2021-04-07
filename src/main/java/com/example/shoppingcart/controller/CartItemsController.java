@@ -30,7 +30,7 @@ public class CartItemsController {
     }
 
     @DeleteMapping("")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeItem(@NotNull @Positive @RequestParam("itemId") Long itemId) {
         cartService.remove(itemId);
     }

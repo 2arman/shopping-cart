@@ -39,7 +39,7 @@ public class BatchRuleController {
     }
 
     @DeleteMapping("/{id}/rules")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAllRules(@NotNull @Positive @PathVariable("id") Long itemId) {
         ruleService.removeAll(itemId);
     }

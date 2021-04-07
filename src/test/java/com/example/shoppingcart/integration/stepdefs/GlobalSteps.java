@@ -12,17 +12,22 @@ public class GlobalSteps extends AbstractSteps implements En {
         Then("the save is SUCCESSFUL", () -> {
             /* Method testContext() is from AbstractSteps class */
             final Response response = getTextContext().getResponse();
-            assertThat(response.getStatusCode()).isBetween(200, 201);
+            assertThat(response.getStatusCode()).isEqualTo(201);;
         });
 
         Then("the save FAILS", () -> {
             final Response response = getTextContext().getResponse();
-            assertThat(response.getStatusCode()).isBetween(400, 412);
+            assertThat(response.getStatusCode()).isBetween(400, 499);
         });
 
-        Then("the( get| delete) is SUCCESSFUL", () -> {
+        Then("the get is SUCCESSFUL", () -> {
             final Response response = getTextContext().getResponse();
             assertThat(response.getStatusCode()).isEqualTo(200);
+        });
+
+        Then("the delete is SUCCESSFUL", () -> {
+            final Response response = getTextContext().getResponse();
+            assertThat(response.getStatusCode()).isEqualTo(204);
         });
     }
 }

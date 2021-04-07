@@ -14,4 +14,5 @@ public interface CartService {
 
     void remove(Long itemId);
 
+    void resetCard();
 }

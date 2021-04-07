@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",
         plugin = {"json:target/cucumber-report.json"},
-        glue = {"com.example.shoppingcart.bdd.config",
-                "com.example.shoppingcart.bdd.stepdefs"})
+        glue = {"com.example.shoppingcart.integration.config",
+                "com.example.shoppingcart.integration.stepdefs"})
 public class ShoppingCartITest extends SpringIntegrationTest {
 }

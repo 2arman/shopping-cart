@@ -18,15 +18,17 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class CartServiceImpl implements CartService {
+    private final CartRepository cartRepository;
     private final CartMapper cartMapper;
     private final ItemService itemService;
     private final PriceService priceService;
-    private final Cart cachedUserCart;
+    private  Cart cachedUserCart;
 
     public CartServiceImpl(CartRepository cartRepository,
                            CartMapper cartMapper,
                            ItemService itemService,
                            PriceService priceService) {
+        this.cartRepository = cartRepository;
         this.cartMapper = cartMapper;
         this.itemService = itemService;
         this.priceService = priceService;
@@ -72,6 +74,11 @@ public class CartServiceImpl implements CartService {
                             .quantity(newQuantity)
                             .build();
                 });
+    }
+
+    @Override
+    public void resetCard() {
+        cachedUserCart = cartRepository.add(new Cart());
     }
 
     private void checkQuantity(Item item) {

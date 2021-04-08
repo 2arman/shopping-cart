@@ -1,4 +1,4 @@
-# shopping-card
+# Checking out Shopping Cart
 an implementation of a supermarket checkout that calculates the total price of purchased items.
 
 ## Case Description
@@ -47,7 +47,31 @@ We don't implement database connection or using any ORM.
 We consider `Rule` as abstract domain that can extends by custom rules later.
 At first try we only implement `QuantityRule` for handling discount on quantity.
 
-Best price calculation implemented by a Dynamic Programming Solution. (`PriceService`) 
+Best price calculation implemented by a Dynamic Programming Solution. (`PriceService`).
+for solving the problem we consider each rules and item as a weighted-valued item in  
+a reversed of knapsack problem for getting lower valuable items.  
+#### Api
+Api for Project provide for this type of users: super market owner and customer.
+For initialize the supermarket items and related rule below path must be used.
+this action considered as back-office operation.
+
+- `/api/v1/bo/items` 
+
+users can add item or remove from their shopping cart by using below path
+(please notice that at the moment only one concurrent user can use the cart,
+ after implementing authentication each users can use their cart concurrent)
+ 
+ -`/api/v1/cart/items`
+ 
+The cashier can use below path for checkout operation.
+
+-`/api/v1/cart`
+
+For more api details can use swagger. 
+in image below you can see all project's api:
+
+![API Document](api_doc.png?raw=true "API document")  
+ 
 #### Test
 For better sense use cucumber tools for implementing bdd and the Integration Tests.
 Unit test implemented for best price calculation test cases.

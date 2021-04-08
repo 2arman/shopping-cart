@@ -61,11 +61,11 @@ users can add item or remove from their shopping cart by using below path
 (please notice that at the moment only one concurrent user can use the cart,
  after implementing authentication each users can use their cart concurrent)
  
- -`/api/v1/cart/items`
+- `/api/v1/cart/items`
  
 The cashier can use below path for checkout operation.
 
--`/api/v1/cart`
+- `/api/v1/cart`
 
 For more api details can use swagger. 
 in image below you can see all project's api:
